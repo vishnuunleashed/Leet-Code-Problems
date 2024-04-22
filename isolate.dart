@@ -83,4 +83,7 @@ class SendPortTemp {
   Map toJson()=>{
     "progress": progress
   };
-}d
+}
+
+
+///race conditions (issues that arise when multiple threads try to access the same data simultaneously)
