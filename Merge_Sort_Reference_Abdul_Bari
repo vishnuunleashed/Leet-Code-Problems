@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+void printArray(int arr[], int arr_size );
+void mergeSort(int arr[],int l,int r);
+void merge(int arr[],int l,int m,int r);
+
+
+int main() {
+    // Write C code here
+    int arr[] = {8,2,9,6,5,3,7,4};
+    printf("Try programiz.pro");
+    int arr_size = sizeof(arr) / sizeof(arr[0]); 
+    printArray(arr,arr_size);
+    mergeSort(arr,0,arr_size-1);
+    printf("\n");
+    printArray(arr,arr_size);
+    
+    return 0;
+}
+
+void printArray(int arr[], int arr_size ){
+    for(int i = 0; i < arr_size; i++){
+        printf("%d\n",arr[i]);
+    }
+    
+}
+void mergeSort(int arr[],int l,int r){
+    if(l<r){
+        int m = l + (r-l)/2;
+        mergeSort(arr,l,m);//left
+        mergeSort(arr,m+1,r);
+        merge(arr,l,m,r);
+    }
+}
+
+void merge(int arr[],int l,int m,int r){
+    int i,j,k;
+    i = l;
+    j = m+1;
+    k = l;
+    int arr2[r+1];
+    while(i <= m && j <= r){
+        if(arr[i] < arr[j]){
+            arr2[k] = arr[i];
+            i++;
+            k++;
+        }else{
+            arr2[k] = arr[j];
+            j++;
+            k++;
+        }
+    }
+    while(i<=m){
+        arr2[k] = arr[i];
+        i++;
+        k++;
+    }
+    while(j<=r){
+        arr2[k] = arr[j];
+        j++;
+        k++;
+    }
+   for(int i = l; i <= r; i++){arr[i] = arr2[i]; }
+    
+}
